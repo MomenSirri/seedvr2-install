@@ -1,81 +1,1846 @@
-<!doctype html>
-<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.min.css">
 <style>
-  body{font-family:ui-sans-serif,system-ui;margin:0;background:#fafafa}
-  .cmd-card{max-width:980px;margin:24px auto;padding:16px 18px;border:1px solid #e5e7eb;border-radius:12px;background:#fff}
-  .cmd-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
-  .cmd-title{font-weight:700;font-size:18px;margin:0}
-  .cmd-actions{display:flex;gap:8px}
-  button{padding:.45rem .7rem;border:1px solid #e5e7eb;border-radius:8px;background:#fff;cursor:pointer}
-  .tabs{display:flex;gap:6px;margin:10px 0}
-  .tab{border:1px solid #e5e7eb;border-radius:999px;padding:.25rem .6rem;font-size:12px;cursor:pointer}
-  .tab.active{background:#111827;color:#fff;border-color:#111827}
-  .hidden{display:none}
-  pre{max-height:60vh;overflow:auto;border-radius:10px}
+  .card { max-width: 980px; margin: 2rem auto; padding: 1rem 1.25rem; border: 1px solid #e5e7eb; border-radius: 12px; }
+  .meta { font: 500 14px/1.5 ui-sans-serif, system-ui; color: #6b7280; margin-bottom: .5rem; }
+  .title { font: 700 20px/1.3 ui-sans-serif, system-ui; margin: 0 0 .75rem; }
+  pre { max-height: 70vh; overflow: auto; border-radius: 10px; }
+  .btns { display:flex; gap:.5rem; margin:.75rem 0 0; }
+  button { padding:.5rem .75rem; border:1px solid #e5e7eb; border-radius:8px; background:#fff; cursor:pointer }
 </style>
-<div class="cmd-card">
-  <div class="cmd-head">
-    <h3 class="cmd-title">Install SeedVR2 (nightly) for ComfyUI</h3>
-    <div class="cmd-actions">
-      <button onclick="copyBlock()">Copy</button>
-      <button onclick="downloadScript()">Download .sh</button>
-    </div>
-  </div>
 
-  <div class="tabs">
-    <div class="tab active" data-target="#unix">macOS / Linux / WSL</div>
-    <div class="tab" data-target="#win">Windows (Git Bash)</div>
-    <div class="tab" data-target="#one">One-liner</div>
-  </div>
-
-  <div id="unix">
-    <pre><code class="language-bash">
-cd ComfyUI/custom_nodes
-git clone https://github.com/numz/ComfyUI-SeedVR2_VideoUpscaler.git
-cd ComfyUI-SeedVR2_VideoUpscaler
-git switch nightly
-    </code></pre>
-  </div>
-
-  <div id="win" class="hidden">
-    <pre><code class="language-bash">
-# Run in Git Bash from your ComfyUI folder:
-cd ComfyUI/custom_nodes
-git clone https://github.com/numz/ComfyUI-SeedVR2_VideoUpscaler.git
-cd ComfyUI-SeedVR2_VideoUpscaler
-git switch nightly
-    </code></pre>
-  </div>
-
-  <div id="one" class="hidden">
-    <pre><code class="language-bash">
-cd ComfyUI/custom_nodes && git clone https://github.com/numz/ComfyUI-SeedVR2_VideoUpscaler.git && cd ComfyUI-SeedVR2_VideoUpscaler && git switch nightly
-    </code></pre>
+<div class="card">
+  <div class="meta">ComfyUI • SeedVR2 • Still Image Upscale</div>
+  <h2 class="title">Workflow JSON (Behance Embed)</h2>
+  <pre><code class="language-json">
+{
+  "id": "21ad5595-d6fc-462d-b6de-3d7e0304490c",
+  "revision": 0,
+  "last_node_id": 161,
+  "last_link_id": 222,
+  "nodes": [
+    {
+      "id": 161,
+      "type": "SaveImage",
+      "pos": [
+        7004.55859375,
+        804.0482788085938
+      ],
+      "size": [
+        630.34814453125,
+        465.1885986328125
+      ],
+      "flags": {
+        "pinned": true
+      },
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 222
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.63",
+        "Node name for S&R": "SaveImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.3"
+        }
+      },
+      "widgets_values": [
+        "ComfyUI"
+      ]
+    },
+    {
+      "id": 160,
+      "type": "d3aaf2cc-eb3d-467b-a1d0-0b4ff0ef8c41",
+      "pos": [
+        6730,
+        800
+      ],
+      "size": [
+        256.6416320800781,
+        102
+      ],
+      "flags": {
+        "pinned": true
+      },
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 220
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            222
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.63",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.3"
+        }
+      },
+      "widgets_values": [
+        4,
+        0.05,
+        1.31
+      ]
+    },
+    {
+      "id": 153,
+      "type": "LoadImage",
+      "pos": [
+        6300,
+        800
+      ],
+      "size": [
+        415.72705078125,
+        504.7974853515625
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            220
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.60",
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {
+            "image": true,
+            "upload": true
+          }
+        }
+      },
+      "widgets_values": [
+        "pasted/image (188).png",
+        "image"
+      ]
+    }
+  ],
+  "links": [
+    [
+      220,
+      153,
+      0,
+      160,
+      0,
+      "IMAGE"
+    ],
+    [
+      222,
+      160,
+      0,
+      161,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "definitions": {
+    "subgraphs": [
+      {
+        "id": "d3aaf2cc-eb3d-467b-a1d0-0b4ff0ef8c41",
+        "version": 1,
+        "state": {
+          "lastGroupId": 9,
+          "lastNodeId": 165,
+          "lastLinkId": 232,
+          "lastRerouteId": 0
+        },
+        "revision": 0,
+        "config": {},
+        "name": "SeedVR2",
+        "inputNode": {
+          "id": -10,
+          "bounding": [
+            4030.1796875,
+            771.8717041015625,
+            120,
+            120
+          ]
+        },
+        "outputNode": {
+          "id": -20,
+          "bounding": [
+            9889.847972450025,
+            664.1563067989347,
+            120,
+            60
+          ]
+        },
+        "inputs": [
+          {
+            "id": "91536a62-fcdb-406d-8e89-0d7f9c7873ac",
+            "name": "image",
+            "type": "IMAGE",
+            "linkIds": [
+              203
+            ],
+            "localized_name": "image",
+            "pos": {
+              "0": 4130.1796875,
+              "1": 791.8717041015625
+            }
+          },
+          {
+            "id": "359dbc3e-604f-4d68-955d-1d0bdfbc1a53",
+            "name": "scale_by",
+            "type": "FLOAT",
+            "linkIds": [
+              220
+            ],
+            "pos": {
+              "0": 4130.1796875,
+              "1": 811.8717041015625
+            }
+          },
+          {
+            "id": "2f9664cd-2df8-47db-aef8-c1f9dbd93ef2",
+            "name": "intensity",
+            "type": "FLOAT",
+            "linkIds": [
+              231
+            ],
+            "label": "Grain intensity",
+            "pos": {
+              "0": 4130.1796875,
+              "1": 831.8717041015625
+            }
+          },
+          {
+            "id": "7e42a334-aca4-410f-9e28-2e9919d27091",
+            "name": "sharpness",
+            "type": "FLOAT",
+            "linkIds": [
+              232
+            ],
+            "pos": {
+              "0": 4130.1796875,
+              "1": 851.8717041015625
+            }
+          }
+        ],
+        "outputs": [
+          {
+            "id": "a6b23ec2-5604-45f5-b792-73a4b03ccee6",
+            "name": "IMAGE",
+            "type": "IMAGE",
+            "linkIds": [
+              230
+            ],
+            "localized_name": "IMAGE",
+            "pos": {
+              "0": 9909.84765625,
+              "1": 684.1563110351562
+            }
+          }
+        ],
+        "widgets": [],
+        "nodes": [
+          {
+            "id": 99,
+            "type": "GetImageSize+",
+            "pos": [
+              5238.96875,
+              636.706787109375
+            ],
+            "size": [
+              159.50155639648438,
+              66
+            ],
+            "flags": {},
+            "order": 3,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 129
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "width",
+                "name": "width",
+                "type": "INT",
+                "links": [
+                  130
+                ]
+              },
+              {
+                "localized_name": "height",
+                "name": "height",
+                "type": "INT",
+                "links": [
+                  132
+                ]
+              },
+              {
+                "localized_name": "count",
+                "name": "count",
+                "type": "INT",
+                "links": null
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfyui_essentials",
+              "ver": "9d9f4bedfc9f0321c19faf71855e228c93bd0dc9",
+              "Node name for S&R": "GetImageSize+",
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.3",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": []
+          },
+          {
+            "id": 100,
+            "type": "SimpleMath+",
+            "pos": [
+              5498.46875,
+              636.706787109375
+            ],
+            "size": [
+              270,
+              98
+            ],
+            "flags": {},
+            "order": 4,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "a",
+                "name": "a",
+                "shape": 7,
+                "type": "*",
+                "link": 130
+              },
+              {
+                "localized_name": "b",
+                "name": "b",
+                "shape": 7,
+                "type": "*",
+                "link": 131
+              },
+              {
+                "localized_name": "c",
+                "name": "c",
+                "shape": 7,
+                "type": "*",
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "INT",
+                "name": "INT",
+                "type": "INT",
+                "links": [
+                  138,
+                  153
+                ]
+              },
+              {
+                "localized_name": "FLOAT",
+                "name": "FLOAT",
+                "type": "FLOAT",
+                "links": null
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfyui_essentials",
+              "ver": "9d9f4bedfc9f0321c19faf71855e228c93bd0dc9",
+              "Node name for S&R": "SimpleMath+",
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.3",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "a/b"
+            ]
+          },
+          {
+            "id": 105,
+            "type": "GetImageSize+",
+            "pos": [
+              5238.96875,
+              832.7068481445312
+            ],
+            "size": [
+              159.50155639648438,
+              66
+            ],
+            "flags": {},
+            "order": 9,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 139
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "width",
+                "name": "width",
+                "type": "INT",
+                "links": []
+              },
+              {
+                "localized_name": "height",
+                "name": "height",
+                "type": "INT",
+                "links": []
+              },
+              {
+                "localized_name": "count",
+                "name": "count",
+                "type": "INT",
+                "links": null
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfyui_essentials",
+              "ver": "9d9f4bedfc9f0321c19faf71855e228c93bd0dc9",
+              "Node name for S&R": "GetImageSize+",
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.3",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": []
+          },
+          {
+            "id": 106,
+            "type": "ImageFromBatch+",
+            "pos": [
+              6238.46875,
+              636.706787109375
+            ],
+            "size": [
+              270,
+              82
+            ],
+            "flags": {},
+            "order": 10,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 140
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "IMAGE",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  141
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfyui_essentials",
+              "ver": "9d9f4bedfc9f0321c19faf71855e228c93bd0dc9",
+              "Node name for S&R": "ImageFromBatch+",
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.3",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              1,
+              1
+            ]
+          },
+          {
+            "id": 107,
+            "type": "GetImageSize+",
+            "pos": [
+              6608.46875,
+              636.706787109375
+            ],
+            "size": [
+              159.50155639648438,
+              66
+            ],
+            "flags": {},
+            "order": 11,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 141
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "width",
+                "name": "width",
+                "type": "INT",
+                "links": [
+                  156
+                ]
+              },
+              {
+                "localized_name": "height",
+                "name": "height",
+                "type": "INT",
+                "links": [
+                  157
+                ]
+              },
+              {
+                "localized_name": "count",
+                "name": "count",
+                "type": "INT",
+                "links": null
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfyui_essentials",
+              "ver": "9d9f4bedfc9f0321c19faf71855e228c93bd0dc9",
+              "Node name for S&R": "GetImageSize+",
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.3",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": []
+          },
+          {
+            "id": 112,
+            "type": "ImageListToBatch+",
+            "pos": [
+              7978.720703125,
+              653.8418579101562
+            ],
+            "size": [
+              185.96347045898438,
+              26
+            ],
+            "flags": {},
+            "order": 13,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 191
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "IMAGE",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  200
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfyui_essentials",
+              "ver": "9d9f4bedfc9f0321c19faf71855e228c93bd0dc9",
+              "Node name for S&R": "ImageListToBatch+",
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.3",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": []
+          },
+          {
+            "id": 104,
+            "type": "ImageTile+",
+            "pos": [
+              5868.46875,
+              636.706787109375
+            ],
+            "size": [
+              270,
+              234
+            ],
+            "flags": {},
+            "order": 8,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 136
+              },
+              {
+                "localized_name": "rows",
+                "name": "rows",
+                "type": "INT",
+                "widget": {
+                  "name": "rows"
+                },
+                "link": 137
+              },
+              {
+                "localized_name": "cols",
+                "name": "cols",
+                "type": "INT",
+                "widget": {
+                  "name": "cols"
+                },
+                "link": 138
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "IMAGE",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  140,
+                  217
+                ]
+              },
+              {
+                "localized_name": "tile_width",
+                "name": "tile_width",
+                "type": "INT",
+                "links": null
+              },
+              {
+                "localized_name": "tile_height",
+                "name": "tile_height",
+                "type": "INT",
+                "links": null
+              },
+              {
+                "localized_name": "overlap_x",
+                "name": "overlap_x",
+                "type": "INT",
+                "links": [
+                  150
+                ]
+              },
+              {
+                "localized_name": "overlap_y",
+                "name": "overlap_y",
+                "type": "INT",
+                "links": [
+                  151
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfyui_essentials",
+              "ver": "9d9f4bedfc9f0321c19faf71855e228c93bd0dc9",
+              "Node name for S&R": "ImageTile+",
+              "ue_properties": {
+                "widget_ue_connectable": {
+                  "rows": true,
+                  "cols": true
+                },
+                "version": "7.3",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              2,
+              2,
+              0.05,
+              0,
+              0
+            ]
+          },
+          {
+            "id": 101,
+            "type": "SimpleMath+",
+            "pos": [
+              5498.46875,
+              864.7068481445312
+            ],
+            "size": [
+              270,
+              98
+            ],
+            "flags": {},
+            "order": 5,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "a",
+                "name": "a",
+                "shape": 7,
+                "type": "*",
+                "link": 132
+              },
+              {
+                "localized_name": "b",
+                "name": "b",
+                "shape": 7,
+                "type": "*",
+                "link": 133
+              },
+              {
+                "localized_name": "c",
+                "name": "c",
+                "shape": 7,
+                "type": "*",
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "INT",
+                "name": "INT",
+                "type": "INT",
+                "links": [
+                  137,
+                  152
+                ]
+              },
+              {
+                "localized_name": "FLOAT",
+                "name": "FLOAT",
+                "type": "FLOAT",
+                "links": null
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfyui_essentials",
+              "ver": "9d9f4bedfc9f0321c19faf71855e228c93bd0dc9",
+              "Node name for S&R": "SimpleMath+",
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.3",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "a/b"
+            ]
+          },
+          {
+            "id": 147,
+            "type": "SeedVR2ExtraArgs",
+            "pos": [
+              7235.04443359375,
+              833.0567626953125
+            ],
+            "size": [
+              270,
+              202
+            ],
+            "flags": {},
+            "order": 0,
+            "mode": 0,
+            "inputs": [],
+            "outputs": [
+              {
+                "localized_name": "extra_args",
+                "name": "extra_args",
+                "type": "extra_args",
+                "links": [
+                  189
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "seedvr2_videoupscaler",
+              "ver": "984f9af478cbde993c36f1006625753498d2c08d",
+              "Node name for S&R": "SeedVR2ExtraArgs",
+              "ue_properties": {
+                "version": "7.0.1",
+                "widget_ue_connectable": {
+                  "tiled_vae": true,
+                  "vae_tile_size": true,
+                  "vae_tile_overlap": true,
+                  "preserve_vram": true,
+                  "cache_model": true,
+                  "enable_debug": true,
+                  "device": true
+                }
+              },
+              "aux_id": "numz/ComfyUI-SeedVR2_VideoUpscaler"
+            },
+            "widgets_values": [
+              true,
+              512,
+              64,
+              false,
+              true,
+              false,
+              "cuda:0"
+            ]
+          },
+          {
+            "id": 102,
+            "type": "ImageResize+",
+            "pos": [
+              4868.96875,
+              636.706787109375
+            ],
+            "size": [
+              270,
+              218
+            ],
+            "flags": {},
+            "order": 6,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 134
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "IMAGE",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  129,
+                  136,
+                  139
+                ]
+              },
+              {
+                "localized_name": "width",
+                "name": "width",
+                "type": "INT",
+                "links": null
+              },
+              {
+                "localized_name": "height",
+                "name": "height",
+                "type": "INT",
+                "links": null
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfyui_essentials",
+              "ver": "9d9f4bedfc9f0321c19faf71855e228c93bd0dc9",
+              "Node name for S&R": "ImageResize+",
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.3",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              10240,
+              10240,
+              "lanczos",
+              "keep proportion",
+              "downscale if bigger",
+              0
+            ]
+          },
+          {
+            "id": 148,
+            "type": "SeedVR2BlockSwap",
+            "pos": [
+              7235.00732421875,
+              632.28662109375
+            ],
+            "size": [
+              254.23435974121094,
+              154
+            ],
+            "flags": {},
+            "order": 1,
+            "mode": 0,
+            "inputs": [],
+            "outputs": [
+              {
+                "label": "block_swap_config",
+                "localized_name": "block_swap_config",
+                "name": "block_swap_config",
+                "type": "block_swap_config",
+                "links": []
+              }
+            ],
+            "properties": {
+              "cnr_id": "seedvr2_videoupscaler",
+              "ver": "4df5cef5937001bcef056d5508c6a884849ffe13",
+              "Node name for S&R": "SeedVR2BlockSwap",
+              "ue_properties": {
+                "version": "7.0.1",
+                "widget_ue_connectable": {
+                  "blocks_to_swap": true,
+                  "offload_io_components": true
+                }
+              },
+              "aux_id": "numz/ComfyUI-SeedVR2_VideoUpscaler"
+            },
+            "widgets_values": [
+              16,
+              true
+            ]
+          },
+          {
+            "id": 136,
+            "type": "easy int",
+            "pos": [
+              4873.482421875,
+              907.4011840820312
+            ],
+            "size": [
+              270,
+              58
+            ],
+            "flags": {},
+            "order": 2,
+            "mode": 0,
+            "inputs": [],
+            "outputs": [
+              {
+                "localized_name": "int",
+                "name": "int",
+                "type": "INT",
+                "links": [
+                  131,
+                  133
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfyui-easy-use",
+              "ver": "1.3.3",
+              "Node name for S&R": "easy int",
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.3",
+                "input_ue_unconnectable": {}
+              },
+              "sdppp_max": 100,
+              "sdppp_min": 0
+            },
+            "widgets_values": [
+              1800
+            ]
+          },
+          {
+            "id": 154,
+            "type": "ImageResize+",
+            "pos": [
+              4220.1796875,
+              635.9336547851562
+            ],
+            "size": [
+              270,
+              218
+            ],
+            "flags": {},
+            "order": 17,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 203
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "IMAGE",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  204
+                ]
+              },
+              {
+                "localized_name": "width",
+                "name": "width",
+                "type": "INT",
+                "links": null
+              },
+              {
+                "localized_name": "height",
+                "name": "height",
+                "type": "INT",
+                "links": null
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfyui_essentials",
+              "ver": "9d9f4bedfc9f0321c19faf71855e228c93bd0dc9",
+              "Node name for S&R": "ImageResize+",
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.3",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              1280,
+              1280,
+              "lanczos",
+              "keep proportion",
+              "downscale if bigger",
+              0
+            ]
+          },
+          {
+            "id": 143,
+            "type": "ImageScaleBy",
+            "pos": [
+              4558.298828125,
+              639.29931640625
+            ],
+            "size": [
+              270,
+              82
+            ],
+            "flags": {},
+            "order": 15,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 204
+              },
+              {
+                "localized_name": "scale_by",
+                "name": "scale_by",
+                "type": "FLOAT",
+                "widget": {
+                  "name": "scale_by"
+                },
+                "link": 220
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "IMAGE",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  134
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.3.60",
+              "Node name for S&R": "ImageScaleBy",
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.3",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "lanczos",
+              4
+            ]
+          },
+          {
+            "id": 149,
+            "type": "SeedVR2",
+            "pos": [
+              7623.47021484375,
+              652.187744140625
+            ],
+            "size": [
+              270,
+              266
+            ],
+            "flags": {},
+            "order": 16,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "images",
+                "name": "images",
+                "type": "IMAGE",
+                "link": 225
+              },
+              {
+                "localized_name": "block_swap_config",
+                "name": "block_swap_config",
+                "shape": 7,
+                "type": "block_swap_config",
+                "link": null
+              },
+              {
+                "localized_name": "extra_args",
+                "name": "extra_args",
+                "shape": 7,
+                "type": "extra_args",
+                "link": 189
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "links": [
+                  191
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "seedvr2_videoupscaler",
+              "ver": "984f9af478cbde993c36f1006625753498d2c08d",
+              "Node name for S&R": "SeedVR2",
+              "ue_properties": {
+                "version": "7.0.1",
+                "widget_ue_connectable": {
+                  "model": true,
+                  "seed": true,
+                  "new_resolution": true,
+                  "batch_size": true,
+                  "color_correction": true,
+                  "input_noise_scale": true,
+                  "latent_noise_scale": true
+                }
+              },
+              "aux_id": "numz/ComfyUI-SeedVR2_VideoUpscaler"
+            },
+            "widgets_values": [
+              "seedvr2_ema_7b_sharp_fp8_e4m3fn_mixed_block35_fp16.safetensors",
+              42,
+              "fixed",
+              2048,
+              1,
+              "none",
+              0,
+              0
+            ]
+          },
+          {
+            "id": 113,
+            "type": "ImageResize+",
+            "pos": [
+              8257.3642578125,
+              661.06396484375
+            ],
+            "size": [
+              270,
+              218
+            ],
+            "flags": {},
+            "order": 14,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 200
+              },
+              {
+                "localized_name": "width",
+                "name": "width",
+                "type": "INT",
+                "widget": {
+                  "name": "width"
+                },
+                "link": 156
+              },
+              {
+                "localized_name": "height",
+                "name": "height",
+                "type": "INT",
+                "widget": {
+                  "name": "height"
+                },
+                "link": 157
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "IMAGE",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  149
+                ]
+              },
+              {
+                "localized_name": "width",
+                "name": "width",
+                "type": "INT",
+                "links": null
+              },
+              {
+                "localized_name": "height",
+                "name": "height",
+                "type": "INT",
+                "links": null
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfyui_essentials",
+              "ver": "9d9f4bedfc9f0321c19faf71855e228c93bd0dc9",
+              "Node name for S&R": "ImageResize+",
+              "ue_properties": {
+                "widget_ue_connectable": {
+                  "width": true,
+                  "height": true
+                },
+                "version": "7.3",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              512,
+              512,
+              "lanczos",
+              "stretch",
+              "always",
+              0
+            ]
+          },
+          {
+            "id": 103,
+            "type": "ImageResize+",
+            "pos": [
+              6614.99755859375,
+              769.6307373046875
+            ],
+            "size": [
+              270,
+              218
+            ],
+            "flags": {},
+            "order": 7,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 217
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "IMAGE",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  225
+                ]
+              },
+              {
+                "localized_name": "width",
+                "name": "width",
+                "type": "INT",
+                "links": null
+              },
+              {
+                "localized_name": "height",
+                "name": "height",
+                "type": "INT",
+                "links": null
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfyui_essentials",
+              "ver": "9d9f4bedfc9f0321c19faf71855e228c93bd0dc9",
+              "Node name for S&R": "ImageResize+",
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.3",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              1024,
+              1024,
+              "lanczos",
+              "keep proportion",
+              "always",
+              0
+            ]
+          },
+          {
+            "id": 111,
+            "type": "ImageUntile+",
+            "pos": [
+              8634.6796875,
+              653.8418579101562
+            ],
+            "size": [
+              270,
+              130
+            ],
+            "flags": {},
+            "order": 12,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "tiles",
+                "name": "tiles",
+                "type": "IMAGE",
+                "link": 149
+              },
+              {
+                "localized_name": "overlap_x",
+                "name": "overlap_x",
+                "type": "INT",
+                "widget": {
+                  "name": "overlap_x"
+                },
+                "link": 150
+              },
+              {
+                "localized_name": "overlap_y",
+                "name": "overlap_y",
+                "type": "INT",
+                "widget": {
+                  "name": "overlap_y"
+                },
+                "link": 151
+              },
+              {
+                "localized_name": "rows",
+                "name": "rows",
+                "type": "INT",
+                "widget": {
+                  "name": "rows"
+                },
+                "link": 152
+              },
+              {
+                "localized_name": "cols",
+                "name": "cols",
+                "type": "INT",
+                "widget": {
+                  "name": "cols"
+                },
+                "link": 153
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "IMAGE",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  229
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfyui_essentials",
+              "ver": "9d9f4bedfc9f0321c19faf71855e228c93bd0dc9",
+              "Node name for S&R": "ImageUntile+",
+              "ue_properties": {
+                "widget_ue_connectable": {
+                  "overlap_x": true,
+                  "overlap_y": true,
+                  "rows": true,
+                  "cols": true
+                },
+                "version": "7.3",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              0,
+              0,
+              2,
+              2
+            ]
+          },
+          {
+            "id": 164,
+            "type": "FilmGrain",
+            "pos": [
+              9244.03515625,
+              659.5701293945312
+            ],
+            "size": [
+              270,
+              130
+            ],
+            "flags": {},
+            "order": 18,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 228
+              },
+              {
+                "localized_name": "intensity",
+                "name": "intensity",
+                "type": "FLOAT",
+                "widget": {
+                  "name": "intensity"
+                },
+                "link": 231
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "IMAGE",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  230
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfyui-post-processing-nodes",
+              "ver": "1.0.1",
+              "Node name for S&R": "FilmGrain",
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              0.05,
+              5,
+              0,
+              0
+            ]
+          },
+          {
+            "id": 165,
+            "type": "Image Filter Adjustments",
+            "pos": [
+              8944.1416015625,
+              657.421142578125
+            ],
+            "size": [
+              270,
+              226
+            ],
+            "flags": {},
+            "order": 19,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "image",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 229
+              },
+              {
+                "localized_name": "sharpness",
+                "name": "sharpness",
+                "type": "FLOAT",
+                "widget": {
+                  "name": "sharpness"
+                },
+                "link": 232
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "IMAGE",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  228
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "was-node-suite-comfyui",
+              "ver": "ea935d1044ae5a26efa54ebeb18fe9020af49a45",
+              "Node name for S&R": "Image Filter Adjustments",
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              0,
+              1,
+              1,
+              1.31,
+              0,
+              0,
+              0,
+              "true"
+            ]
+          }
+        ],
+        "groups": [
+          {
+            "id": 9,
+            "title": "upscaler",
+            "bounding": [
+              4210.1796875,
+              558.6866455078125,
+              5313.85546875,
+              486.3701477050781
+            ],
+            "color": "#8AA",
+            "font_size": 24,
+            "flags": {}
+          }
+        ],
+        "links": [
+          {
+            "id": 129,
+            "origin_id": 102,
+            "origin_slot": 0,
+            "target_id": 99,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 130,
+            "origin_id": 99,
+            "origin_slot": 0,
+            "target_id": 100,
+            "target_slot": 0,
+            "type": "INT,FLOAT"
+          },
+          {
+            "id": 131,
+            "origin_id": 136,
+            "origin_slot": 0,
+            "target_id": 100,
+            "target_slot": 1,
+            "type": "INT,FLOAT"
+          },
+          {
+            "id": 139,
+            "origin_id": 102,
+            "origin_slot": 0,
+            "target_id": 105,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 140,
+            "origin_id": 104,
+            "origin_slot": 0,
+            "target_id": 106,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 141,
+            "origin_id": 106,
+            "origin_slot": 0,
+            "target_id": 107,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 149,
+            "origin_id": 113,
+            "origin_slot": 0,
+            "target_id": 111,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 150,
+            "origin_id": 104,
+            "origin_slot": 3,
+            "target_id": 111,
+            "target_slot": 1,
+            "type": "INT"
+          },
+          {
+            "id": 151,
+            "origin_id": 104,
+            "origin_slot": 4,
+            "target_id": 111,
+            "target_slot": 2,
+            "type": "INT"
+          },
+          {
+            "id": 152,
+            "origin_id": 101,
+            "origin_slot": 0,
+            "target_id": 111,
+            "target_slot": 3,
+            "type": "INT"
+          },
+          {
+            "id": 153,
+            "origin_id": 100,
+            "origin_slot": 0,
+            "target_id": 111,
+            "target_slot": 4,
+            "type": "INT"
+          },
+          {
+            "id": 191,
+            "origin_id": 149,
+            "origin_slot": 0,
+            "target_id": 112,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 136,
+            "origin_id": 102,
+            "origin_slot": 0,
+            "target_id": 104,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 137,
+            "origin_id": 101,
+            "origin_slot": 0,
+            "target_id": 104,
+            "target_slot": 1,
+            "type": "INT"
+          },
+          {
+            "id": 138,
+            "origin_id": 100,
+            "origin_slot": 0,
+            "target_id": 104,
+            "target_slot": 2,
+            "type": "INT"
+          },
+          {
+            "id": 132,
+            "origin_id": 99,
+            "origin_slot": 1,
+            "target_id": 101,
+            "target_slot": 0,
+            "type": "INT,FLOAT"
+          },
+          {
+            "id": 133,
+            "origin_id": 136,
+            "origin_slot": 0,
+            "target_id": 101,
+            "target_slot": 1,
+            "type": "INT,FLOAT"
+          },
+          {
+            "id": 204,
+            "origin_id": 154,
+            "origin_slot": 0,
+            "target_id": 143,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 189,
+            "origin_id": 147,
+            "origin_slot": 0,
+            "target_id": 149,
+            "target_slot": 2,
+            "type": "extra_args"
+          },
+          {
+            "id": 134,
+            "origin_id": 143,
+            "origin_slot": 0,
+            "target_id": 102,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 200,
+            "origin_id": 112,
+            "origin_slot": 0,
+            "target_id": 113,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 156,
+            "origin_id": 107,
+            "origin_slot": 0,
+            "target_id": 113,
+            "target_slot": 1,
+            "type": "INT"
+          },
+          {
+            "id": 157,
+            "origin_id": 107,
+            "origin_slot": 1,
+            "target_id": 113,
+            "target_slot": 2,
+            "type": "INT"
+          },
+          {
+            "id": 217,
+            "origin_id": 104,
+            "origin_slot": 0,
+            "target_id": 103,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 203,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 154,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 220,
+            "origin_id": -10,
+            "origin_slot": 1,
+            "target_id": 143,
+            "target_slot": 1,
+            "type": "FLOAT"
+          },
+          {
+            "id": 225,
+            "origin_id": 103,
+            "origin_slot": 0,
+            "target_id": 149,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 228,
+            "origin_id": 165,
+            "origin_slot": 0,
+            "target_id": 164,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 229,
+            "origin_id": 111,
+            "origin_slot": 0,
+            "target_id": 165,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 230,
+            "origin_id": 164,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 231,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 164,
+            "target_slot": 1,
+            "type": "FLOAT"
+          },
+          {
+            "id": 232,
+            "origin_id": -10,
+            "origin_slot": 3,
+            "target_id": 165,
+            "target_slot": 1,
+            "type": "FLOAT"
+          }
+        ],
+        "extra": {
+          "ue_links": [],
+          "links_added_by_ue": []
+        }
+      }
+    ]
+  },
+  "config": {},
+  "extra": {
+    "frontendVersion": "1.26.13",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true,
+    "ue_links": [],
+    "links_added_by_ue": [],
+    "ds": {
+      "scale": 1.2725353440404736,
+      "offset": [
+        -6064.182210286458,
+        -616.1050412285745
+      ]
+    }
+  },
+  "version": 0.4
+}
+  </code></pre>
+  <div class="btns">
+    <button onclick="copyJSON()">Copy JSON</button>
+    <button onclick="downloadJSON()">Download JSON</button>
   </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-bash.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-json.min.js"></script>
 <script>
-  const tabs=[...document.querySelectorAll('.tab')];
-  tabs.forEach(t=>t.addEventListener('click',()=>{
-    tabs.forEach(x=>x.classList.remove('active'));
-    t.classList.add('active');
-    document.querySelectorAll('#unix,#win,#one').forEach(s=>s.classList.add('hidden'));
-    document.querySelector(t.dataset.target).classList.remove('hidden');
-  }));
-  function currentCode(){
-    const p=document.querySelector('#unix:not(.hidden),#win:not(.hidden),#one:not(.hidden)');
-    return p.querySelector('code').innerText.trim();
-  }
-  function copyBlock(){
-    navigator.clipboard.writeText(currentCode()); alert('Commands copied');
-  }
-  function downloadScript(){
-    const blob=new Blob([currentCode()+"\n"],{type:'text/x-shellscript'});
-    const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
-    a.download='install_seedvr2_nightly.sh'; a.click(); URL.revokeObjectURL(a.href);
-  }
+function getJSONText(){
+  return document.querySelector('code.language-json').innerText.trim();
+}
+function copyJSON(){
+  navigator.clipboard.writeText(getJSONText());
+  alert('JSON copied');
+}
+function downloadJSON(){
+  const blob = new Blob([getJSONText()], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'seedvr2_workflow.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
 </script>
-</html>
